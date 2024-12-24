@@ -1,0 +1,96 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% block title %}Edit Customer Profile{% endblock %}
+
+{% block main %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Edit Profile</h2>
+            <form method="POST"
+                  action="{{ url_for('profile.edit_customer_profile', customer_id=user.customer.id) }}">
+              <!-- Name -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       name="name"
+                       value="{{ user.name }}"
+                       required />
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       name="email"
+                       value="{{ user.email }}"
+                       required />
+              </div>
+
+              <!-- Phone Number -->
+              <div class="mb-3">
+                <label for="phone_number" class="form-label">Phone Number</label>
+                <input type="text"
+                       class="form-control"
+                       id="phone_number"
+                       name="phone_number"
+                       value="{{ user.phone_number }}"
+                       required />
+              </div>
+
+              <!-- Address -->
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text"
+                       class="form-control"
+                       id="address"
+                       name="address"
+                       value="{{ user.address }}"
+                       required />
+              </div>
+
+              <!-- Postal Code -->
+              <div class="mb-3">
+                <label for="postal_code" class="form-label">Postal Code</label>
+                <input type="text"
+                       class="form-control"
+                       id="postal_code"
+                       name="postal_code"
+                       value="{{ user.postal_code }}"
+                       required />
+              </div>
+
+              <!-- City -->
+              <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <select class="form-select" id="city" name="city_id" required>
+                  <option value="" disabled selected>Select your city</option>
+                  {% for state_code, cities_group in cities|groupby('state_code') %}
+                    <optgroup label="{{ state_code }}">
+                      {% for city in cities_group %}
+                        <option value="{{ city.id }}"
+                                {% if user.city_id == city.id %}selected{% endif %}>
+                          {{ city.name }}
+                        </option>
+                      {% endfor %}
+                    </optgroup>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Update Profile</button>
+              <a href="{{ url_for('profile.view_customer_profile', customer_id=user.customer.id) }}"
+                 class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

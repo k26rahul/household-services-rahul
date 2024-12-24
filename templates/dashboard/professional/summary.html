@@ -1,0 +1,31 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "summary" %}
+
+{% block title %}Summary{% endblock %}
+
+{% block header %}<h1>Summary</h1>{% endblock %}
+
+{% block main %}
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div class="container my-5">
+    <!-- Ratings Breakdown -->
+    <h3>Ratings Breakdown (1-5 Stars)</h3>
+    <p class="my-4 text-muted">
+      Here is the detailed breakdown of ratings given to your services.
+    </p>
+    {% include 'dashboard/common/partials/ratings_breakdown.html' %}
+  </div>
+
+  <div class="container my-5">
+    <!-- Status Breakdown -->
+    <h3>Booking Status Breakdown</h3>
+    <p class="my-4 text-muted">
+      Here is the detailed overview of booking status distribution for your assigned bookings.
+    </p>
+    {% include 'dashboard/common/partials/status_breakdown.html' %}
+  </div>
+
+{% endblock %}

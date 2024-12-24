@@ -1,0 +1,48 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "search" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block header %}<h1>Search Results</h1>{% endblock %}
+
+{% block main %}
+  <div class="container my-5">
+    {% if results|length == 0 %}
+      <p>No results found for the given search criteria.</p>
+
+    {% elif role == 'customer' %}
+      {% set customers = results %}
+      <div class="container my-5" id="customers_table">
+        {% include 'dashboard/common/partials/customers_table.html' %}
+      </div>
+
+    {% elif role == 'professional' %}
+      {% set professionals = results %}
+      <div class="container my-5" id="professionals_table">
+        {% include 'dashboard/common/partials/professionals_table.html' %}
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+      $(document).ready(function() {
+          var tableIds = ['customersTable', 'professionalsTable'];
+          var anchors = [
+              '#customers_table',
+              '#professionals_table',
+          ];
+          tableIds.forEach(function(tableId) {
+              if ($('#' + tableId).length) {
+                  $('#' + tableId).DataTable();
+              }
+          });
+          anchors.forEach(function(id) {
+              var targetContainer = $(id);
+              if (targetContainer.length) {
+                  targetContainer.find('.collapse').collapse('show');
+              }
+          });
+      })
+  </script>
+{% endblock %}

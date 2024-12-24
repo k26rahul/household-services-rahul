@@ -1,0 +1,50 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "profile" %}
+
+{% block title %}Customer Profile{% endblock %}
+
+{% block header %}<h1 class="text-center">Customer Profile</h1>{% endblock %}
+
+{% block main %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-lg">
+          <div class="card-body text-center">
+            <img src="https://placehold.co/150"
+                 alt="Profile Avatar"
+                 class="rounded-circle mb-3"
+                 width="150"
+                 height="150">
+
+            <h4 class="card-title">{{ user.name }}</h4>
+            <p>
+              <strong>Email:</strong> {{ user.email }}
+            </p>
+            <p>
+              <strong>Phone Number:</strong> {{ user.phone_number }}
+            </p>
+            <p>
+              <strong>Address:</strong> {{ user.address }}
+            </p>
+            <p>
+              <strong>Postal Code:</strong> {{ user.postal_code }}
+            </p>
+            <p>
+              <strong>City:</strong> {{ user.city.name }}
+            </p>
+            <p>
+              <strong>Role:</strong> {{ user.role.name.capitalize() }}
+            </p>
+
+            {% if current_user.id == user.id or current_user.role.name == 'ADMIN' %}
+              <a href="{{ url_for('profile.edit_customer_profile', customer_id=user.customer.id) }}"
+                 class="btn btn-primary mt-3">Edit Profile</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

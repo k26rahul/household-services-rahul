@@ -1,0 +1,48 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Count</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for status in status_dict %}
+    <tr>
+      <td>{{ status.status }}</td>
+      <td>{{ status.count }}</td>
+      <td>{{ status.percentage | round(2) }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="row my-4">
+  <div class="col-md-6">
+    <canvas id="status-chart" class="w-100"></canvas>
+  </div>
+</div>
+
+<template id="status-data"> {{ status_dict | tojson }} </template>
+
+<script>
+  const statusData = JSON.parse(document.getElementById('status-data').innerHTML);
+  const statusChart = new Chart(document.getElementById('status-chart').getContext('2d'), {
+    type: 'pie',
+    data: {
+      labels: statusData.map(s => s.status),
+      datasets: [
+        {
+          label: 'Booking Status Breakdown',
+          data: statusData.map(s => s.count),
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          hoverOffset: 4,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  });
+</script>

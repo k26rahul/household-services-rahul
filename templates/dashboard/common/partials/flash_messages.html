@@ -1,0 +1,48 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <template id='flashMessages'>
+            {{ messages | tojson }}
+        </template>
+    {% endif %}
+{% endwith %}
+
+<script>
+    $(document).ready(function() {
+        let flashMessages = [];
+        try {
+            console.log($('#flashMessages').html())
+            flashMessages = JSON.parse($('#flashMessages').html());
+        } catch (e) {
+            console.error('Error parsing flash messages JSON:', e);
+        }
+
+        if (flashMessages && flashMessages.length) {
+            flashMessages.forEach(function([category, message]) {
+                // create the toast
+                const toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">').addClass(
+                    'toast-' + category
+                ).append(` 
+            <div class="toast-header text-white" style="background-color: ${ category === 'success' ? '#28a745' : category === 'danger' ? '#dc3545' : '#007bff' };">
+              <strong class="me-auto">${category.charAt(0).toUpperCase() + category.slice(1)}</strong>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              <i class="bi ${ category === 'success' ? 'bi-check-circle' : category === 'danger' ? 'bi-exclamation-circle' : 'bi-info-circle' } me-2"></i>
+              ${message}
+            </div>
+          `);
+
+                // append to the toast container
+                $('#toast-container').append(toast);
+
+                // show the toast
+                toast.toast({
+                    delay: 3000
+                }).toast('show');
+            });
+        }
+    });
+</script>
+
+<div id="toast-container"
+     class="toast-container position-fixed top-0 end-0 p-3"></div>

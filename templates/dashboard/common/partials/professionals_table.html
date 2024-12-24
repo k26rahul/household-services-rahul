@@ -1,0 +1,66 @@
+<div class="accordion" id="professionalAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="professionalHeading">
+      <button class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#professionalCollapse">Professionals</button>
+    </h2>
+    <div id="professionalCollapse"
+         class="accordion-collapse collapse"
+         data-bs-parent="#professionalAccordion">
+      <div class="accordion-body table-responsive">
+        <!-- professionals table -->
+        <table id="professionalsTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Service Type</th>
+              <th>City</th>
+              <th>Phone</th>
+              <th>Total Bookings</th>
+              {% if current_user.role.name == 'ADMIN' %}<th>Actions</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for professional in professionals %}
+              <tr>
+                <td>
+                  <a href="{{ url_for('profile.view_professional_profile', professional_id=professional.id) }}"
+                     target="_blank"
+                     class="text-decoration-none">
+                    {{ professional.id }}
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+                </td>
+
+                <td>{{ professional.user.name }}</td>
+                <td>{{ professional.user.email }}</td>
+                <td>{{ professional.service_type.name }}</td>
+                <td>{{ professional.user.city.name }}</td>
+                <td>{{ professional.user.phone_number }}</td>
+                <td>{{ professional.bookings|length }}</td>
+                {% if current_user.role.name == 'ADMIN' %}
+                  <td>
+                    {% if not professional.is_verified %}
+                      <a href="{{ url_for('admin_dashboard.verify_professional', professional_id=professional.id) }}"
+                         class="btn btn-warning btn-sm">Verify</a>
+                    {% elif professional.user.is_blocked %}
+                      <a href="{{ url_for('admin_dashboard.unblock_user', user_id=professional.user.id) }}"
+                         class="btn btn-success btn-sm">Unblock</a>
+                    {% else %}
+                      <a href="{{ url_for('admin_dashboard.block_user', user_id=professional.user.id) }}"
+                         class="btn btn-danger btn-sm">Block</a>
+                    {% endif %}
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

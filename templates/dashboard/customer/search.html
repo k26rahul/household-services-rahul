@@ -1,0 +1,52 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "search" %}
+
+{% block title %}Search Services{% endblock %}
+
+{% block header %}<h1>Search Services</h1>{% endblock %}
+
+{% block main %}
+  <div class="container my-5">
+    <form method="GET"
+          action="{{ url_for('customer_dashboard.search_results') }}"
+          class="row g-3">
+      <!-- Service Name -->
+      <div class="col-md-6 col-lg-4">
+        <label for="name" class="form-label">Service Name</label>
+        <input type="text" id="name" name="name" class="form-control" />
+        <p class="text-muted mt-2">
+          Search for a service by name (partial match allowed).
+        </p>
+      </div>
+
+      <!-- Service Description -->
+      <div class="col-md-6 col-lg-4">
+        <label for="description" class="form-label">Service Description</label>
+        <input type="text" id="description" name="description" class="form-control" />
+        <p class="text-muted mt-2">Search by description (partial match allowed).</p>
+      </div>
+
+      <!-- Max Price -->
+      <div class="col-md-6 col-lg-4">
+        <label for="price" class="form-label">Maximum Price</label>
+        <input type="text" id="price" name="price" class="form-control" />
+        <p class="text-muted mt-2">Enter a maximum price to filter services.</p>
+      </div>
+
+      <!-- Postal Code -->
+      <div class="col-md-6 col-lg-4">
+        <label for="postal_code" class="form-label">Postal Code</label>
+        <input type="text" id="postal_code" name="postal_code" class="form-control" />
+        <p class="text-muted mt-2">
+          Use the postal code to find services where a professional is available nearby. Professionals can offer citywide services, but this search helps you find those closer to your location for quicker assistance.
+        </p>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="reset" class="btn btn-secondary ms-3">Clear</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

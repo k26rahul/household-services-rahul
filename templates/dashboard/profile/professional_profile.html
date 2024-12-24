@@ -1,0 +1,75 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "profile" %}
+
+{% block title %}Professional Profile{% endblock %}
+
+{% block header %}
+  <h1 class="text-center">Professional Profile</h1>
+{% endblock %}
+
+{% block main %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-lg">
+          <div class="card-body text-center">
+            <img src="https://placehold.co/150"
+                 alt="Profile Avatar"
+                 class="rounded-circle mb-3"
+                 width="150"
+                 height="150">
+
+            <h4 class="card-title">
+              {{ user.name }}
+              {% if user.professional.is_verified %}
+                <i class="bi bi-check-circle text-success" title="Verified Profile"></i>
+              {% else %}
+                <i class="bi bi-x-circle text-danger" title="Not Verified Profile"></i>
+              {% endif %}
+            </h4>
+
+            <p>
+              <strong>Email:</strong> {{ user.email }}
+            </p>
+            <p>
+              <strong>Phone Number:</strong> {{ user.phone_number }}
+            </p>
+            <p>
+              <strong>Address:</strong> {{ user.address }}
+            </p>
+            <p>
+              <strong>Postal Code:</strong> {{ user.postal_code }}
+            </p>
+            <p>
+              <strong>City:</strong> {{ user.city.name }}
+            </p>
+            <p>
+              <strong>Role:</strong> {{ user.role.name.capitalize() }}
+            </p>
+            <p>
+              <strong>Service Type:</strong> {{ user.professional.service_type.name }}
+            </p>
+            <p>
+              <strong>About Me:</strong> {{ user.professional.about_me }}
+            </p>
+            <p>
+              <strong>Resume:</strong>
+              {% if user.professional.resume_file %}
+                <a href="{{ url_for('static', filename='uploads/' + user.professional.resume_file) }}"
+                   target="_blank">View Resume</a>
+              {% else %}
+                <span>Resume not available</span>
+              {% endif %}
+            </p>
+
+            {% if current_user.id == user.id or current_user.role.name == 'ADMIN' %}
+              <a href="{{ url_for('profile.edit_professional_profile', professional_id=user.professional.id) }}"
+                 class="btn btn-primary mt-3">Edit Profile</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

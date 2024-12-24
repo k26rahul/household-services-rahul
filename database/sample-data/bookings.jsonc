@@ -1,0 +1,188 @@
+[
+  // 🔴 OPEN from city 1
+  {
+    "customer_id": 1,
+    "service_id": 3,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-10T14:00:00",
+    "details": "General house cleaning"
+  },
+  {
+    "customer_id": 1,
+    "service_id": 2,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-10T18:00:00",
+    "details": "NA"
+  },
+  {
+    "customer_id": 3,
+    "service_id": 5,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-11T14:00:00",
+    "details": "Wash all windows inside and out"
+  },
+  {
+    "customer_id": 1,
+    "service_id": 8,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-12T14:00:00",
+    "details": "Fix electrical wiring in the living room"
+  },
+  {
+    "customer_id": 3,
+    "service_id": 11,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-13T14:00:00",
+    "details": "Install new showerhead in the bathroom"
+  },
+
+  // 🔴 OPEN from city 2
+  {
+    "customer_id": 5,
+    "service_id": 3,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-14T14:00:00",
+    "details": "Deep clean the entire house, including the kitchen"
+  },
+  {
+    "customer_id": 5,
+    "service_id": 13,
+    "status": "OPEN",
+    "scheduled_on": "2025-01-15T14:00:00",
+    "details": "Fix leaky pipe under the sink"
+  },
+
+  // 🔴 ASSIGNED from city 1
+  {
+    "customer_id": 1,
+    "assigned_professional_id": 1,
+    "service_id": 2,
+    "status": "ASSIGNED",
+    "scheduled_on": "2024-11-28T14:00:00",
+    "details": "Cleaning the kitchen counters"
+  },
+  {
+    "customer_id": 1,
+    "assigned_professional_id": 1,
+    "service_id": 1,
+    "status": "ASSIGNED",
+    "scheduled_on": "2024-11-28T18:00:00",
+    "details": "NA"
+  },
+  {
+    "customer_id": 3,
+    "assigned_professional_id": 1,
+    "service_id": 1,
+    "status": "ASSIGNED",
+    "scheduled_on": "2025-01-17T14:00:00",
+    "details": "Sanitize bathrooms thoroughly"
+  },
+  {
+    "customer_id": 1,
+    "assigned_professional_id": 8,
+    "service_id": 12,
+    "status": "ASSIGNED",
+    "scheduled_on": "2025-01-18T14:00:00",
+    "details": "Clear clogged drain in the sink"
+  },
+  {
+    "customer_id": 3,
+    "assigned_professional_id": 8,
+    "service_id": 11,
+    "status": "ASSIGNED",
+    "scheduled_on": "2025-01-19T14:00:00",
+    "details": "Repair broken faucet in the kitchen"
+  },
+
+  // 🔴 ASSIGNED from city 2
+  {
+    "customer_id": 5,
+    "assigned_professional_id": 4,
+    "service_id": 4,
+    "status": "ASSIGNED",
+    "scheduled_on": "2025-01-20T14:00:00",
+    "details": "Clean carpet in the living room"
+  },
+  {
+    "customer_id": 5,
+    "assigned_professional_id": 4,
+    "service_id": 5,
+    "status": "ASSIGNED",
+    "scheduled_on": "2025-01-21T14:00:00",
+    "details": "Wash all windows and glass"
+  },
+
+  // 🔴 CLOSED from city 1
+  {
+    "customer_id": 1,
+    "assigned_professional_id": 6,
+    "service_id": 7,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-15T14:00:00",
+    "details": "Fix short circuit in the living room",
+    "review_stars": 5,
+    "review_comments": "Excellent work!"
+  },
+  {
+    "customer_id": 3,
+    "assigned_professional_id": 1,
+    "service_id": 5,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-16T14:00:00",
+    "details": "Clean all windows inside and outside",
+    "review_stars": 4,
+    "review_comments": "Very clean windows"
+  },
+  {
+    "customer_id": 1,
+    "assigned_professional_id": 1,
+    "service_id": 3,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-17T14:00:00",
+    "details": "Deep clean the entire house",
+    "review_stars": 3,
+    "review_comments": "Satisfactory cleaning"
+  },
+  {
+    "customer_id": 1,
+    "assigned_professional_id": 1,
+    "service_id": 2,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-17T18:00:00",
+    "details": "NA",
+    "review_stars": 3,
+    "review_comments": "Satisfactory cleaning"
+  },
+  {
+    "customer_id": 3,
+    "assigned_professional_id": 2,
+    "service_id": 1,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-18T14:00:00",
+    "details": "Complete restroom sanitization and kitchen cleaning",
+    "review_stars": 5,
+    "review_comments": "Outstanding effort!"
+  },
+
+  // 🔴 CLOSED from city 2
+  {
+    "customer_id": 5,
+    "assigned_professional_id": 9,
+    "service_id": 13,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-19T14:00:00",
+    "details": "Fix leaking pipes and check water pressure",
+    "review_stars": 2,
+    "review_comments": "Leaks not fixed"
+  },
+  {
+    "customer_id": 5,
+    "assigned_professional_id": 4,
+    "service_id": 5,
+    "status": "CLOSED",
+    "scheduled_on": "2024-11-20T14:00:00",
+    "details": "Clean all windows inside and outside",
+    "review_stars": 4,
+    "review_comments": "Well done!"
+  }
+]

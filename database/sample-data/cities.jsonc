@@ -1,0 +1,12 @@
+{
+  "UP": ["Lucknow", "Kanpur", "Varanasi", "Prayagraj"],
+  "MH": ["Mumbai", "Pune", "Nagpur"],
+  "KA": ["Bengaluru", "Hubli", "Hagaribommanahalli"],
+  "DL": ["New Delhi"],
+  "MP": ["Bhopal", "Indore", "Gwalior", "Ujjain"],
+  "TN": ["Chennai", "Trichy"],
+  "GJ": ["Ahmedabad", "Surat"],
+  "RJ": ["Jaipur", "Kota"],
+  "WB": ["Kolkata", "Durgapur"],
+  "AP": ["Visakhapatnam", "Vijayawada", "Tirupati"]
+}

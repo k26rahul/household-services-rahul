@@ -1,0 +1,62 @@
+{% extends 'dashboard/common/base.html' %}
+
+<!-- == -->
+{% block title %}Update Service{% endblock %}
+
+<!-- == -->
+{% block main %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Update Service</h2>
+            <form method="POST"
+                  action="{{ url_for('admin_dashboard.update_service', service_id=service.id) }}">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       name="name"
+                       value="{{ service.name }}"
+                       required />
+              </div>
+              <div class="mb-3">
+                <label for="service_type" class="form-label">Service Type</label>
+                <select class="form-control" id="service_type" name="service_type" required>
+                  {% for service_type in service_types %}
+                    <!-- == -->
+                    {% if service.service_type_id == service_type.id %}
+                      <option value="{{ service_type.id }}" selected>{{ service_type.name }}</option>
+                    {% else %}
+                      <option value="{{ service_type.id }}">{{ service_type.name }}</option>
+                    {% endif %}
+                    <!-- == -->
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number"
+                       class="form-control"
+                       id="price"
+                       name="price"
+                       value="{{ service.price }}"
+                       required />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3">
+{{ service.description }}</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Update</button>
+              <a href="{{ url_for('admin_dashboard.home') }}"
+                 class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "summary" %}
+
+{% block title %}Summary{% endblock %}
+
+{% block header %}<h1>Summary</h1>{% endblock %}
+
+{% block main %}
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div class="container my-5">
+    <!-- Total Spent -->
+    <section class="mb-4">
+      <h2>Total Amount Spent</h2>
+      <p>
+        <strong>₹{{ summary.total_spent }}</strong>
+      </p>
+    </section>
+
+    <!-- Status Breakdown -->
+    <section class="mt-4">
+      <h2>Booking Status Breakdown</h2>
+      <p class="text-muted">Here is the detailed overview of your bookings.</p>
+      {% set status_dict = summary.status_dict %}
+      {% include 'dashboard/common/partials/status_breakdown.html' %}
+    </section>
+  </div>
+{% endblock %}

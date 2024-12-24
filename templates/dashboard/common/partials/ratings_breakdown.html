@@ -1,0 +1,52 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Stars</th>
+      <th>Count</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rating in ratings_dict %}
+    <tr>
+      <td>{{ rating.stars }} Star</td>
+      <td>{{ rating.count }}</td>
+      <td>{{ rating.percentage | round(2) }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="row my-4">
+  <div class="col-md-6">
+    <canvas id="ratings-chart" class="w-100"></canvas>
+  </div>
+</div>
+
+<template id="ratings-data"> {{ ratings_dict | tojson }} </template>
+
+<script>
+  const ratingsData = JSON.parse(document.getElementById('ratings-data').innerHTML);
+  const ratingsChart = new Chart(document.getElementById('ratings-chart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ratingsData.map(r => `${r.stars} Star`),
+      datasets: [
+        {
+          label: 'Ratings Breakdown',
+          data: ratingsData.map(r => r.count),
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true },
+      },
+    },
+  });
+</script>

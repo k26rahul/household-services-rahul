@@ -1,0 +1,141 @@
+{% set is_customer_info_visible = current_user.role.name != 'CUSTOMER' %}
+{% set is_actions_column_visible = current_user.role.name != 'ADMIN' and table_type != 'closed' %}
+{% set is_rating_and_comments_visible = table_type == 'closed' %}
+{% set is_professional_user = current_user.role.name == 'PROFESSIONAL' %}
+{% set is_customer_user = current_user.role.name == 'CUSTOMER' %}
+
+<div class="accordion" id="bookingAccordion_{{ table_id }}">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#bookingCollapse_{{ table_id }}">
+        Bookings - {{ table_type | capitalize }}
+      </button>
+    </h2>
+    <div id="bookingCollapse_{{ table_id }}"
+         class="accordion-collapse collapse"
+         data-bs-parent="#bookingAccordion_{{ table_id }}">
+      <div class="accordion-body table-responsive">
+        <!-- bookings table -->
+        <table id="bookingsTable_{{ table_id }}" class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+
+              {% if is_customer_info_visible %}
+                <th>Customer Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Postal Code</th>
+              {% endif %}
+
+              {% if not is_professional_user %}<th>Professional</th>{% endif %}
+
+              <th>Service</th>
+              <th>Details</th>
+              <th>Scheduled Date</th>
+
+              {% if table_type == 'all' %}<th>Status</th>{% endif %}
+
+              {% if is_rating_and_comments_visible or table_type == 'all' %}
+                <th>Rating</th>
+                <th>Comments</th>
+              {% endif %}
+
+              {% if is_actions_column_visible %}<th>Actions</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in bookings %}
+              <tr>
+                <td>{{ booking.id }}</td>
+
+                {% if is_customer_info_visible %}
+                  <td>
+                    <a href="{{ url_for('profile.view_customer_profile', customer_id=booking.customer.id) }}"
+                       target="_blank">
+                      #{{ booking.customer.id }} {{ booking.customer.user.name }}
+                      <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  </td>
+                  <td>{{ booking.customer.user.phone_number }}</td>
+                  <td>{{ booking.customer.user.address }}</td>
+                  <td>{{ booking.customer.user.postal_code }}</td>
+                {% endif %}
+
+                {% if not is_professional_user %}
+                  <td>
+                    {% if booking.assigned_professional %}
+                      <a href="{{ url_for('profile.view_professional_profile', professional_id=booking.assigned_professional.id) }}"
+                         target="_blank">
+                        #{{ booking.assigned_professional.id }} {{ booking.assigned_professional.user.name }}
+                        <i class="bi bi-box-arrow-up-right"></i>
+                      </a>
+                    {% else %}
+                      Not Assigned
+                    {% endif %}
+                  </td>
+                {% endif %}
+
+                <td>{{ booking.service.name }}</td>
+                <td>{{ booking.details }}</td>
+                <td>{{ booking.scheduled_on.strftime("%Y-%m-%d %H:%M") }}</td>
+
+                {% if table_type == 'all' %}<td>{{ booking.status.name }}</td>{% endif %}
+
+                {% if is_rating_and_comments_visible or table_type == 'all' %}
+                  <td>
+                    {% if booking.review_stars %}
+                      {% if booking.review_stars <= 2 %}
+                        ☹️
+                      {% elif booking.review_stars == 3 %}
+                        🙂
+                      {% else %}
+                        😍
+                      {% endif %}
+                      ({{ booking.review_stars }})
+                    {% else %}
+                      Not rated
+                    {% endif %}
+                  </td>
+                  <td>{{ booking.review_comments }}</td>
+                {% endif %}
+
+                {% if is_actions_column_visible %}
+                  <td>
+                    {% if is_professional_user %}
+                      {% if booking.status.name == 'OPEN' %}
+                        <a href="{{ url_for('professional_dashboard.accept_booking', booking_id=booking.id) }}"
+                           class="btn btn-success">Accept</a>
+                      {% elif booking.status.name == 'ASSIGNED' %}
+                        <a href="{{ url_for('professional_dashboard.cancel_booking', booking_id=booking.id) }}"
+                           class="btn btn-danger">Cancel</a>
+                      {% elif booking.status.name == 'CLOSED' %}
+                        <span class="text-muted">Closed <i class="bi bi-lock-fill"></i></span>
+                      {% endif %}
+                    {% endif %}
+
+                    {% if is_customer_user %}
+                      {% if booking.status.name == 'OPEN' %}
+                        <a href="{{ url_for('customer_dashboard.cancel_booking', booking_id=booking.id) }}"
+                           class="btn btn-danger">Cancel</a>
+                      {% elif booking.status.name == 'ASSIGNED' %}
+                        <a href="{{ url_for('customer_dashboard.close_booking', booking_id=booking.id) }}"
+                           class="btn btn-primary">Close</a>
+                      {% elif booking.status.name == 'CLOSED' %}
+                        <span class="text-muted">Closed <i class="bi bi-lock-fill"></i></span>
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                {% endif %}
+
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

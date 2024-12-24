@@ -1,0 +1,87 @@
+[
+  // Customers from city 1
+  {
+    "email": "c1@gmail.com",
+    "name": "Alice",
+    "address": "XYZ",
+    "postal_code": "123451",
+    "phone_number": "9876543210",
+    "city_id": 1
+  },
+  {
+    "email": "c2@gmail.com",
+    "name": "Bob",
+    "address": "XYZ",
+    "postal_code": "123451",
+    "phone_number": "9876543211",
+    "city_id": 1
+  },
+  {
+    "email": "c3@gmail.com",
+    "name": "Charlie",
+    "address": "XYZ",
+    "postal_code": "123452",
+    "phone_number": "9876543212",
+    "city_id": 1
+  },
+  {
+    "email": "c4@gmail.com",
+    "name": "Diana",
+    "address": "XYZ",
+    "postal_code": "123452",
+    "phone_number": "9876543213",
+    "city_id": 1
+  },
+
+  // Customers from city 2
+  {
+    "email": "c5@gmail.com",
+    "name": "Eva",
+    "address": "XYZ",
+    "postal_code": "234561",
+    "phone_number": "9876543214",
+    "city_id": 2
+  },
+  {
+    "email": "c6@gmail.com",
+    "name": "Frank",
+    "address": "XYZ",
+    "postal_code": "234561",
+    "phone_number": "9876543215",
+    "city_id": 2
+  },
+  {
+    "email": "c7@gmail.com",
+    "name": "Grace",
+    "address": "XYZ",
+    "postal_code": "234562",
+    "phone_number": "9876543216",
+    "city_id": 2
+  },
+  {
+    "email": "c8@gmail.com",
+    "name": "Henry",
+    "address": "XYZ",
+    "postal_code": "234562",
+    "phone_number": "9876543217",
+    "city_id": 2
+  },
+
+  // Customers from city 3
+  {
+    "email": "c9@gmail.com",
+    "name": "Ivy",
+    "address": "XYZ",
+    "postal_code": "345671",
+    "phone_number": "9876543218",
+    "city_id": 3
+  },
+  {
+    "email": "c10@gmail.com",
+    "name": "Jack",
+    "address": "XYZ",
+    "postal_code": "345671",
+    "phone_number": "9876543219",
+    "city_id": 3
+  }
+]

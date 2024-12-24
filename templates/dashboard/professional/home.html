@@ -1,0 +1,79 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "home" %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+  <h1 class="mb-4">Welcome, {{ current_user.name }}</h1>
+  <p>
+    You are currently in your dashboard.
+    Here you can manage your bookings and see your schedule.
+  </p>
+{% endblock %}
+
+{% block main %}
+  <section class="container my-5" id="open_bookings_table">
+    <h2 class="py-4 pb-2">Open Bookings</h2>
+    <p class="my-4 text-muted">
+      This table shows all the bookings that are currently open and waiting to be accepted.
+    </p>
+    {% set bookings = open_bookings %}
+    {% set table_id = "open" %}
+    {% set table_type = "open" %}
+    <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+  </section>
+
+  <section class="container my-5" id="today_bookings_table">
+    <h2 class="py-4 pb-2">Today's Bookings</h2>
+    <p class="my-4 text-muted">
+      Here you can find the bookings scheduled for today.
+    </p>
+    {% set bookings = today_bookings %}
+    {% set table_id = "today" %}
+    {% set table_type = "assigned" %}
+    <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+  </section>
+
+  <section class="container my-5" id="upcoming_bookings_table">
+    <h2 class="py-4 pb-2">Upcoming Bookings</h2>
+    <div class="alert alert-warning" role="alert">
+      This section includes bookings from future dates and past bookings you missed but are still assigned to you. You can still complete these bookings.
+    </div>
+    {% set bookings = upcoming_bookings %}
+    {% set table_id = "upcoming" %}
+    {% set table_type = "assigned" %}
+    <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+  </section>
+
+  <section class="container my-5" id="closed_bookings_table">
+    <h2 class="py-4 pb-2">Closed Bookings</h2>
+    <p class="my-4 text-muted">
+      Review your completed bookings and their details here.
+    </p>
+    {% set bookings = closed_bookings %}
+    {% set table_id = "closed" %}
+    {% set table_type = "closed" %}
+    <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+  </section>
+{% endblock %}
+
+{% block footer %}
+  <script>
+      $(document).ready(function() {
+          var tableIds = [
+              'bookingsTable_open',
+              'bookingsTable_today',
+              'bookingsTable_upcoming',
+              'bookingsTable_closed',
+          ];
+          var anchors = [
+              '#open_bookings_table',
+              '#today_bookings_table',
+              '#upcoming_bookings_table',
+              '#closed_bookings_table',
+          ];
+          initializeTablesAndAnchors(tableIds, anchors);
+      });
+  </script>
+{% endblock %}

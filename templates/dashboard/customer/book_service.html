@@ -1,0 +1,66 @@
+{% extends 'dashboard/common/base.html' %}
+
+<!-- == -->
+{% set active_page = "book_service" %}
+
+<!-- == -->
+{% block title %}Book Service{% endblock %}
+
+<!-- == -->
+{% block header %}<h1>Book Service</h1>{% endblock %}
+
+<!-- == -->
+{% block main %}
+  <section class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Service Details</h5>
+            <p>
+              <strong>Name:</strong> {{ service.name }}
+            </p>
+            <p>
+              <strong>Description:</strong> {{ service.description or 'No description available.' }}
+            </p>
+            <p>
+              <strong>Price:</strong> ₹{{ service.price }}
+            </p>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Booking Information</h5>
+
+            {% if not is_professional_available(service.service_type_id, current_user.city_id) %}
+              <div class="alert alert-warning" role="alert">
+                No professional is currently available for this service in your city. You can still book a request, and when a professional registers for this service type in the future, they will be able to accept your request and provide the service.
+              </div>
+            {% endif %}
+
+            <form method="POST">
+              <div class="mb-3">
+                <label for="details" class="form-label">Additional Details</label>
+                <textarea class="form-control"
+                          id="details"
+                          name="details"
+                          rows="3"
+                          placeholder="Provide any additional details about the booking..."></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="scheduled_on" class="form-label">Scheduled On</label>
+                <input type="datetime-local"
+                       class="form-control"
+                       id="scheduled_on"
+                       name="scheduled_on"
+                       required />
+              </div>
+              <button type="submit" class="btn btn-primary">Confirm Booking</button>
+              <a href="{{ url_for('customer_dashboard.home') }}"
+                 class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

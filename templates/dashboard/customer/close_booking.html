@@ -1,0 +1,64 @@
+{% extends 'dashboard/common/base.html' %}
+
+<!-- == -->
+{% set active_page = "close_booking" %}
+
+<!-- == -->
+{% block title %}Close Booking{% endblock %}
+
+<!-- == -->
+{% block header %}<h1>Close Booking</h1>{% endblock %}
+
+<!-- == -->
+{% block main %}
+  <section class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Booking Details</h5>
+            <p>
+              <strong>Service:</strong> {{ booking.service.name }}
+            </p>
+            <p>
+              <strong>Details:</strong> {{ booking.details }}
+            </p>
+            <p>
+              <strong>Scheduled On:</strong> {{ booking.scheduled_on.strftime("%Y-%m-%d %H:%M") }}
+            </p>
+            <p>
+              <strong>Assigned Professional:</strong> {{ booking.assigned_professional.user.name }}
+            </p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Provide Feedback</h5>
+            <form method="POST">
+              <div class="mb-3">
+                <label for="rating" class="form-label">
+                  <strong>Rating (1-5):</strong>
+                </label>
+                <select class="form-select" id="rating" name="rating" required>
+                  <option value="" disabled selected>Select Rating</option>
+                  {% for i in range(1, 6) %}<option value="{{ i }}">{{ i }}</option>{% endfor %}
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="comments" class="form-label">
+                  <strong>Comments:</strong>
+                </label>
+                <textarea class="form-control"
+                          id="comments"
+                          name="comments"
+                          rows="4"
+                          placeholder="Write your feedback..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <a href="{{ url_for('customer_dashboard.home', _anchor='assigned_bookings_table') }}"
+                 class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

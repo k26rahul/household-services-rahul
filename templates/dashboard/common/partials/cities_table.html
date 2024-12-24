@@ -1,0 +1,36 @@
+<div class="accordion" id="citiesAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="citiesHeading">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#citiesCollapse"
+      >
+        Cities
+      </button>
+    </h2>
+    <div id="citiesCollapse" class="accordion-collapse collapse" data-bs-parent="#citiesAccordion">
+      <div class="accordion-body table-responsive">
+        <table id="citiesTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>State Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for city in cities %}
+            <tr>
+              <td>{{ city.id }}</td>
+              <td>{{ city.name }}</td>
+              <td>{{ city.state_code }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

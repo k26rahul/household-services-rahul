@@ -1,0 +1,61 @@
+{% extends 'dashboard/common/base.html' %}
+
+<!-- == -->
+{% block title %}Search Results{% endblock %}
+
+<!-- == -->
+{% block header %}<h1>Search Results</h1>{% endblock %}
+
+<!-- == -->
+{% block main %}
+  <div class="container my-5">
+    {% if bookings|length == 0 %}
+      <p>No results found for the given search criteria.</p>
+    {% else %}
+      <div class="container my-5">
+        {% if booking_status == 'all' %}
+          <section class="my-5" id="open_bookings_table">
+            <h2 class="py-4 pb-2">All Bookings</h2>
+            <p class="my-4 text-muted">
+              View all bookings, including open, assigned, and closed.
+            </p>
+            {% set table_type = "all" %}
+            <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+          </section>
+        {% endif %}
+
+        <!-- == -->
+        {% if booking_status == 'open' %}
+          <section class="my-5" id="open_bookings_table">
+            <h2 class="py-4 pb-2">Open Bookings</h2>
+            <p class="my-4 text-muted">
+              Bookings that are currently available for you to accept.
+            </p>
+            {% set table_type = "open" %}
+            <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+          </section>
+        {% endif %}
+
+        <!-- == -->
+        {% if booking_status == 'assigned' %}
+          <section class="my-5" id="assigned_bookings_table">
+            <h2 class="py-4 pb-2">Assigned Bookings</h2>
+            <p class="my-4 text-muted">Review bookings currently assigned to you.</p>
+            {% set table_type = "assigned" %}
+            <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+          </section>
+        {% endif %}
+
+        <!-- == -->
+        {% if booking_status == 'closed' %}
+          <section class="my-5" id="closed_bookings_table">
+            <h2 class="py-4 pb-2">Closed Bookings</h2>
+            <p class="my-4 text-muted">Browse completed bookings and their details.</p>
+            {% set table_type = "closed" %}
+            <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+          </section>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

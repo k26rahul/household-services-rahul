@@ -1,0 +1,48 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "summary" %}
+
+{% block title %}Summary{% endblock %}
+
+{% block header %}<h1>Summary</h1>{% endblock %}
+
+{% block main %}
+  <!-- 🎯 chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div class="container my-5">
+    <!-- 🎯 today's bookings -->
+    <h3 class="mt-4">Today's Bookings</h3>
+    <p class="my-4 text-muted">
+      Below is the summary of bookings opened, assigned, and closed today.
+    </p>
+    <ul class="list-unstyled mb-4">
+      <li>
+        <span class="badge border fs-5 my-2">Open: {{ today_created }}</span>
+      </li>
+      <li>
+        <span class="badge border fs-5 my-2">Assigned: {{ today_assigned }}</span>
+      </li>
+      <li>
+        <span class="badge border fs-5 my-2">Closed: {{ today_closed }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container my-5">
+    <!-- 🎯 ratings breakdown -->
+    <h3>Ratings Breakdown (1-5 Stars)</h3>
+    <p class="my-4 text-muted">Here is the detailed breakdown of ratings.</p>
+    {% include 'dashboard/common/partials/ratings_breakdown.html' %}
+  </div>
+
+  <div class="container my-5">
+    <!-- 🎯 status breakdown -->
+    <h3>Booking Status Breakdown</h3>
+    <p class="my-4 text-muted">
+      Here is the detailed overview of booking status distribution.
+    </p>
+    {% include 'dashboard/common/partials/status_breakdown.html' %}
+  </div>
+
+{% endblock %}

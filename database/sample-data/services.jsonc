@@ -1,0 +1,43 @@
+{
+  "Housekeeping Services": [
+    { "name": "Restroom Sanitization", "price": 100.0 },
+    { "name": "Kitchen Sanitization", "price": 150.0 },
+    { "name": "Complete Home Cleaning", "price": 500.0 },
+    { "name": "Carpet Cleaning", "price": 200.0 },
+    { "name": "Glass & Window Washing", "price": 75.0 }
+  ],
+  "Electrical Maintenance": [
+    { "name": "Light Fixture Setup & Fix", "price": 50.0 },
+    { "name": "Circuit Breaker Repair", "price": 80.0 },
+    { "name": "Wiring & Electrical Installations", "price": 300.0 },
+    { "name": "Ceiling Fan Setup", "price": 100.0 },
+    { "name": "Appliance & AC Maintenance", "price": 200.0 }
+  ],
+  "Plumbing Solutions": [
+    { "name": "Tap Repair & Installation", "price": 50.0 },
+    { "name": "Clogged Drain Unclogging", "price": 100.0 },
+    { "name": "Pipe Leak Repairs", "price": 120.0 },
+    { "name": "Water Heater Setup", "price": 150.0 }
+  ],
+  "Woodworking Services": [
+    { "name": "Furniture Assembly & Restoration", "price": 200.0 },
+    { "name": "Door Fitting & Fixing", "price": 150.0 },
+    { "name": "Wooden Cabinet Construction/Restoration", "price": 500.0 },
+    { "name": "Window Frame Fitting", "price": 250.0 }
+  ],
+  "Ladies' Beauty Services": [
+    { "name": "Hair Cutting & Styling", "price": 150.0 },
+    { "name": "Nail Care & Treatment", "price": 100.0 },
+    { "name": "Skin Care & Facial", "price": 200.0 }
+  ],
+  "Gents' Grooming Services": [
+    { "name": "Haircut & Beard Styling", "price": 100.0 },
+    { "name": "Hair Dyeing", "price": 150.0 },
+    { "name": "Shaving & Beard Trimming", "price": 50.0 },
+    { "name": "Scalp Massage", "price": 70.0 }
+  ],
+  "Culinary Services": [
+    { "name": "Event Catering Chef", "price": 1000.0 },
+    { "name": "Home Meal Preparation", "price": 300.0 }
+  ]
+}

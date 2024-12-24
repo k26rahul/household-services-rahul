@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Household Services Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous" />
+  </head>
+  <body>
+    <main class="container-sm my-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center mb-4">Signup as a Professional</h2>
+
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+
+              {# https://stackoverflow.com/questions/4526273/what-does-enctype-multipart-form-data-mean #}
+              <form action="/signup-as-professional"
+                    method="POST"
+                    enctype='multipart/form-data'>
+                <div class="mb-3">
+                  <label for="professional-name" class="form-label">Name</label>
+                  <input type="text"
+                         class="form-control"
+                         id="professional-name"
+                         name="name"
+                         required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="professional-email" class="form-label">Email</label>
+                  <input type="email"
+                         class="form-control"
+                         id="professional-email"
+                         name="email"
+                         required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="professional-password" class="form-label">Password</label>
+                  <input type="password"
+                         class="form-control"
+                         id="professional-password"
+                         name="password"
+                         required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="professional-phone" class="form-label">Phone Number</label>
+                  <input type="text"
+                         class="form-control"
+                         id="professional-phone"
+                         name="phone_number"
+                         required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="city" class="form-label">City</label>
+                  <select class="form-select" id="city" name="city_id" required>
+                    <option value="" disabled selected>Select your city</option>
+                    {% for state_code, cities_group in cities|groupby('state_code') %}
+                      <optgroup label="{{ state_code }}">
+                        {% for city in cities_group %}
+                          <option value="{{ city.id }}">{{ city.name }}</option>
+                        {% endfor %}
+                      </optgroup>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="professional-address" class="form-label">Address</label>
+                  <input type="text"
+                         class="form-control"
+                         id="professional-address"
+                         name="address"
+                         required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="professional-postal-code" class="form-label">Postal Code</label>
+                  <input type="text"
+                         class="form-control"
+                         id="professional-postal-code"
+                         name="postal_code"
+                         required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="service-type" class="form-label">Service Type</label>
+                  <select class="form-select" id="service-type" name="service_type_id" required>
+                    <option value="" disabled selected>Select a service type</option>
+                    {% for service_type in service_types %}
+                      <option value="{{ service_type.id }}">{{ service_type.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="about-me" class="form-label">About Me</label>
+                  <textarea class="form-control" id="about-me" name="about_me" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="professional-resume" class="form-label">Upload your resume</label>
+                  <input type="file"
+                         class="form-control"
+                         id="professional-resume"
+                         name="resume"
+                         required />
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Signup</button>
+                </div>
+                <hr />
+
+                <div class="mt-3 text-center">
+                  <span>Already have an account?</span>
+                  <div class="d-grid gap-2 mt-2">
+                    <a href="/login" class="btn btn-secondary">Login</a>
+                  </div>
+                </div>
+                <hr />
+
+                <div class="mt-3 text-center">
+                  <span>Want to signup as a customer?</span>
+                  <div class="d-grid gap-2 mt-2">
+                    <a href="/signup" class="btn btn-secondary">Signup as a Customer</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+  </body>
+</html>

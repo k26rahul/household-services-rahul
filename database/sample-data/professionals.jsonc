@@ -1,0 +1,117 @@
+[
+  // Housekeeping services in cities 1, 1, 1, 2, 3
+  {
+    "email": "p1@gmail.com",
+    "name": "John",
+    "service_type_id": 1,
+    "about_me": "Experienced in home cleaning services.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "123451",
+    "phone_number": "8765432190",
+    "city_id": 1
+  },
+  {
+    "email": "p2@gmail.com",
+    "name": "Emily",
+    "service_type_id": 1,
+    "about_me": "Dedicated cleaner with a focus on details.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "123451",
+    "phone_number": "8765432191",
+    "city_id": 1
+  },
+  {
+    "email": "p3@gmail.com",
+    "name": "Lisa",
+    "service_type_id": 1,
+    "about_me": "Expert in restroom and kitchen sanitization.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "123452",
+    "phone_number": "8765432192",
+    "city_id": 1
+  },
+  {
+    "email": "p4@gmail.com",
+    "name": "Olivia",
+    "service_type_id": 1,
+    "about_me": "Specialized in complete home cleaning services.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "234561",
+    "phone_number": "8765432193",
+    "city_id": 2
+  },
+  {
+    "email": "p5@gmail.com",
+    "name": "Robert",
+    "service_type_id": 1,
+    "about_me": "Experienced in carpet and window washing.",
+    "is_verified": false,
+    "address": "XYZ",
+    "postal_code": "345671",
+    "phone_number": "8765432194",
+    "city_id": 3
+  },
+
+  // Electrical maintenance services in cities 1, 2
+  {
+    "email": "p6@gmail.com",
+    "name": "Sarah",
+    "service_type_id": 2,
+    "about_me": "Skilled electrician with 10+ years of experience.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "123451",
+    "phone_number": "8765432195",
+    "city_id": 1
+  },
+  {
+    "email": "p7@gmail.com",
+    "name": "Mike",
+    "service_type_id": 2,
+    "about_me": "Professional with expertise in residential wiring.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "234562",
+    "phone_number": "8765432196",
+    "city_id": 2
+  },
+
+  // Plumbing services in cities 1, 2, 3
+  {
+    "email": "p8@gmail.com",
+    "name": "Alex",
+    "service_type_id": 3,
+    "about_me": "Certified plumber available for all residential needs.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "123451",
+    "phone_number": "8765432197",
+    "city_id": 1
+  },
+  {
+    "email": "p9@gmail.com",
+    "name": "David",
+    "service_type_id": 3,
+    "about_me": "Certified plumber for tap repair & installations.",
+    "is_verified": true,
+    "address": "XYZ",
+    "postal_code": "234561",
+    "phone_number": "8765432198",
+    "city_id": 2
+  },
+  {
+    "email": "p10@gmail.com",
+    "name": "James",
+    "service_type_id": 3,
+    "about_me": "Plumber specializing in pipe leak repairs.",
+    "is_verified": false,
+    "address": "XYZ",
+    "postal_code": "345671",
+    "phone_number": "8765432199",
+    "city_id": 3
+  }
+]

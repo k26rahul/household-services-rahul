@@ -1,0 +1,61 @@
+<div class="accordion" id="customerAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="customerHeading">
+      <button class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#customerCollapse">Customers</button>
+    </h2>
+    <div id="customerCollapse"
+         class="accordion-collapse collapse"
+         data-bs-parent="#customerAccordion">
+      <div class="accordion-body table-responsive">
+        <!-- customers table -->
+        <table id="customersTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>City</th>
+              <th>Phone</th>
+              <th>Total Bookings</th>
+              {% if current_user.role.name == 'ADMIN' %}<th>Actions</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for customer in customers %}
+              <tr>
+                <td>
+                  <a href="{{ url_for('profile.view_customer_profile', customer_id=customer.id) }}"
+                     target="_blank"
+                     class="text-decoration-none">
+                    {{ customer.id }}
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+                </td>
+
+                <td>{{ customer.user.name }}</td>
+                <td>{{ customer.user.email }}</td>
+                <td>{{ customer.user.city.name }}</td>
+                <td>{{ customer.user.phone_number }}</td>
+                <td>{{ customer.bookings|length }}</td>
+                {% if current_user.role.name == 'ADMIN' %}
+                  <td>
+                    {% if customer.user.is_blocked %}
+                      <a href="{{ url_for('admin_dashboard.unblock_user', user_id=customer.user.id) }}"
+                         class="btn btn-success btn-sm">Unblock</a>
+                    {% else %}
+                      <a href="{{ url_for('admin_dashboard.block_user', user_id=customer.user.id) }}"
+                         class="btn btn-danger btn-sm">Block</a>
+                    {% endif %}
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

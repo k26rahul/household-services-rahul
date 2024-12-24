@@ -1,0 +1,36 @@
+{% extends 'dashboard/common/base.html' %}
+
+<!-- == -->
+{% block title %}Create New City{% endblock %}
+
+<!-- == -->
+{% block main %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Create New City</h2>
+            <form method="POST" action="{{ url_for('admin_dashboard.create_city') }}">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required />
+              </div>
+              <div class="mb-3">
+                <label for="state_code" class="form-label">State Code</label>
+                <select class="form-control" id="state_code" name="state_code" required>
+                  {% for state_code, state_name in states %}
+                    <option value="{{ state_code }}">{{ state_code }} ({{ state_name }})</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Create</button>
+              <a href="{{ url_for('admin_dashboard.home') }}"
+                 class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

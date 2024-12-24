@@ -1,0 +1,78 @@
+{% extends 'dashboard/common/base.html' %}
+
+{% set active_page = "home" %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}<h1>Welcome, {{ current_user.name }}</h1>{% endblock %}
+
+{% block main %}
+  <section class="container my-5" id="customers_table">
+    <h2 class="py-4 pb-2">Manage Customers</h2>
+    <p class="my-4 text-muted">
+      Here you can view and manage the registered customers.
+    </p>
+    <div>{% include 'dashboard/common/partials/customers_table.html' %}</div>
+  </section>
+
+  <section class="container my-5" id="professionals_table">
+    <h2 class="py-4 pb-2">Manage Professionals</h2>
+    <p class="my-4 text-muted">
+      View and manage the professionals registered in the system.
+    </p>
+    <div>{% include 'dashboard/common/partials/professionals_table.html' %}</div>
+  </section>
+
+  <section class="container my-5" id="services_table">
+    <h2 class="py-4 pb-2">Manage Services</h2>
+    <p class="my-4 text-muted">
+      Manage the services available for customers to book.
+    </p>
+    <div>{% include 'dashboard/common/partials/services_table.html' %}</div>
+    <a href="{{ url_for('admin_dashboard.create_service') }}"
+       class="btn btn-primary mt-3">Create New Service</a>
+  </section>
+
+  <section class="container my-5" id="service_types_table">
+    <h2 class="py-4 pb-2">Manage Service Types</h2>
+    <p class="my-4 text-muted">
+      Create and manage different types of services offered.
+    </p>
+    <div>{% include 'dashboard/common/partials/service_types_table.html' %}</div>
+    <a href="{{ url_for('admin_dashboard.create_service_type') }}"
+       class="btn btn-primary mt-3">Create New Service Type</a>
+  </section>
+
+  <section class="container my-5" id="cities_table">
+    <h2 class="py-4 pb-2">Manage Cities</h2>
+    <p class="my-4 text-muted">Manage the cities where services are available.</p>
+    <div>{% include 'dashboard/common/partials/cities_table.html' %}</div>
+    <a href="{{ url_for('admin_dashboard.create_city') }}"
+       class="btn btn-primary mt-3">Create New City</a>
+  </section>
+
+  <section class="container my-5" id="bookings_table">
+    <h2 class="py-4 pb-2">Manage Bookings</h2>
+    <p class="my-4 text-muted">View and manage all bookings on the platform.</p>
+    {% set table_id = "all" %}
+    {% set table_type = "all" %}
+    <div>{% include 'dashboard/common/partials/bookings_table.html' %}</div>
+  </section>
+{% endblock %}
+
+{% block footer %}
+  <script>
+      $(document).ready(function() {
+          var tableIds = ['customersTable', 'professionalsTable', 'servicesTable', 'serviceTypesTable', 'citiesTable', 'bookingsTable_all'];
+          var anchors = [
+              '#customers_table',
+              '#professionals_table',
+              '#services_table',
+              '#service_types_table',
+              '#cities_table',
+              '#bookings_table'
+          ];
+          initializeTablesAndAnchors(tableIds, anchors);
+      });
+  </script>
+{% endblock %}
